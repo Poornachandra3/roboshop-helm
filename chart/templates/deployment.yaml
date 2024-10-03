@@ -48,6 +48,7 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: vault
+        {{ end }}
       {{ end }}
       containers:
         - name: {{ .Values.component }}
