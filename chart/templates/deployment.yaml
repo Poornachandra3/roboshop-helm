@@ -22,6 +22,7 @@ spec:
         - name: vault
           emptyDir:
             sizeLimit: 5Mi
+      {{ if .Values.initContainers.vault_init_container_enabled }}
       initContainers:
         - name: vault
           image: 976739212096.dkr.ecr.us-east-1.amazonaws.com/vault-init-container:v2
@@ -40,12 +41,14 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: vault
+        {{ end }}
+      {{ if .Values.initContainers.vault_init_container_enabled }}
         - name: schema
           image: 976739212096.dkr.ecr.us-east-1.amazonaws.com/schema-init-container:v3
           volumeMounts:
             - mountPath: /data
               name: vault
-    {{ end }}
+      {{ end }}
       containers:
         - name: {{ .Values.component }}
           image: 976739212096.dkr.ecr.us-east-1.amazonaws.com/{{ .Chart.Name }}-{{ .Values.component }}:{{ .Values.appVersion }}
