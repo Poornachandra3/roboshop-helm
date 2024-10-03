@@ -3,7 +3,7 @@ initContainers:
   vault_init_container_enabled: true
   schema_init_container_enabled: false
 component: catalogue
-appVersion: 2.0.1
+appVersion: 2.0.2
 
 service:
   type: ClusterIP
