@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: schema-load
-          image: 976739212096.dkr.ecr.us-east-1.amazonaws.com/vault-init-container:v5
+          image: 976739212096.dkr.ecr.us-east-1.amazonaws.com/vault-init-container:v4
           env:
             - name: db_type
               value: {{ .Values.schema.db_type }}
