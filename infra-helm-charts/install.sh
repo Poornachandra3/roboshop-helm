@@ -24,7 +24,8 @@ done
 
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
-helm install pstack prometheus-community/kube-prometheus-stack -f pstack-dev.yaml
+
+helm upgrade -i pstack prometheus-community/kube-prometheus-stack -f pstack-dev.yaml
 
 # grafana default username / password - admin / prom-operator
 
