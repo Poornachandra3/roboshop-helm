@@ -52,6 +52,20 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{ if .Values.healthcheck.enabled }}
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            httpGet:
+              path: /health
+              port: {{ .Values.service.port }}
+          readinessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            httpGet:
+              path: /health
+              port: {{ .Values.service.port }}
+          {{ end }}
     {{ if .Values.initContainers.enabled }}
           volumeMounts:
             - mountPath: /data
